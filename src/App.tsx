@@ -5,6 +5,7 @@ const App = () => {
     <main className="flex h-screen">
       <Routes>
         <Route path="/sign-in" element={<SigninForm />} />
+        <Route index element={<Home />} />
       </Routes>
     </main>
   )
