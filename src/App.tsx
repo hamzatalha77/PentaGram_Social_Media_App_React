@@ -1,7 +1,7 @@
 import AuthLayout from './_auth/AuthLayout'
 import SigninForm from './_auth/forms/SigninForm'
 import SignupForm from './_auth/forms/SignupForm'
-import { Home } from './_root/Home'
+import { Home } from './_root/pages/Home'
 import './globals.css'
 import { Routes, Route } from 'react-router-dom'
 const App = () => {
