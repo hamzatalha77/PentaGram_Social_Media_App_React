@@ -12,11 +12,12 @@ import {
   FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { SignupValidation } from '../../lib/validation/index'
 const formSchema = z.object({
   username: z.string().min(2, {})
 })
 const SignupForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: ''
