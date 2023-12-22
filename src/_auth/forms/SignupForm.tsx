@@ -32,6 +32,12 @@ const SignupForm = () => {
     <Form {...form}>
       <div className="sm:w-420 flex-center flex-col">
         <img src="/assets/images/logo.svg" alt="logo" />
+        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
+          Create a new account
+        </h2>
+        <p className="text-light-3 small-medium mb:base-regular mt-2">
+          To use PentaGram enter your details
+        </p>
       </div>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
