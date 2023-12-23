@@ -39,7 +39,10 @@ const SignupForm = () => {
           To use PentaGram enter your details
         </p>
 
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex flex-col gap-5 w-full mt-4"
+        >
           <FormField
             control={form.control}
             name="username"
