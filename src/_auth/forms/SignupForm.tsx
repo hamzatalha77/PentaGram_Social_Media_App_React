@@ -45,12 +45,12 @@ const SignupForm = () => {
         >
           <FormField
             control={form.control}
-            name="username"
+            name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
+                <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="shadcn" {...field} />
+                  <Input className="shad-input" {...field} />
                 </FormControl>
                 <FormDescription>
                   This is your public display name.
