@@ -52,9 +52,7 @@ const SignupForm = () => {
                 <FormControl>
                   <Input className="shad-input" {...field} />
                 </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
+                <FormDescription></FormDescription>
                 <FormMessage />
               </FormItem>
             )}
