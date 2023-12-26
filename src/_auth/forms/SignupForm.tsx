@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input'
 import { SignupValidation } from '../../lib/validation/index'
 
 const SignupForm = () => {
+  const isLoading = true
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
     defaultValues: {
