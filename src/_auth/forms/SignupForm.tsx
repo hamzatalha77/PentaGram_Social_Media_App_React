@@ -98,7 +98,7 @@ const SignupForm = () => {
           <Button type="submit" className="shad-button_primary">
             {
               isLoading ?(
-                <div>Loading...</div>:'Sign up'
+                <div className='flex-center gap-2'>Loading...</div>:'Sign up'
               )
             }
           </Button>
