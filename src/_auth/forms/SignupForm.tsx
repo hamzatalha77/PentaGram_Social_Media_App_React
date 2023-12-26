@@ -52,7 +52,7 @@ const SignupForm = () => {
                 <FormControl>
                   <Input type="text" className="shad-input" {...field} />
                 </FormControl>
-                <FormDescription></FormDescription>
+
                 <FormMessage />
               </FormItem>
             )}
