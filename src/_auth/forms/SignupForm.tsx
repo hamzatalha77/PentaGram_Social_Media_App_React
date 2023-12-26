@@ -96,7 +96,11 @@ const SignupForm = () => {
             )}
           />
           <Button type="submit" className="shad-button_primary">
-            Submit
+            {
+              isLoading ?(
+                <div>Loading...</div>:'Sign up'
+              )
+            }
           </Button>
         </form>
       </div>
