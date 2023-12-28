@@ -12,6 +12,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { SignupValidation } from '../../lib/validation/index'
+import Loader from '@/components/shared/Loader'
 
 const SignupForm = () => {
   const isLoading = true
