@@ -13,6 +13,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { SignupValidation } from '../../lib/validation/index'
 import Loader from '@/components/shared/Loader'
+import { Link } from 'react-router-dom'
 
 const SignupForm = () => {
   const isLoading = false
@@ -106,7 +107,10 @@ const SignupForm = () => {
               'Sign up'
             )}
           </Button>
-          <p className="text-small-regular text-light-2 text-center mt-2"></p>
+          <p className="text-small-regular text-light-2 text-center mt-2">
+            Already have an account?
+            <Link></Link>
+          </p>
         </form>
       </div>
     </Form>
