@@ -106,6 +106,7 @@ const SignupForm = () => {
               'Sign up'
             )}
           </Button>
+          <p className="text-small-regular"></p>
         </form>
       </div>
     </Form>
