@@ -26,9 +26,7 @@ const SignupForm = () => {
       password: ''
     }
   })
-  function onSubmit(values: z.infer<typeof SignupValidation>) {
-    console.log(values)
-  }
+  function onSubmit(values: z.infer<typeof SignupValidation>) {}
 
   return (
     <Form {...form}>
