@@ -1,1 +1,1 @@
-export async function createUserAccount() {}
+export async function createUserAccount(user: INewUser) {}
