@@ -4,6 +4,7 @@ import { twMerge } from 'tailwind-merge'
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
+
 export const convertFileToUrl = (file: File) => URL.createObjectURL(file)
 
 export function formatDateString(dateString: string) {
@@ -50,4 +51,8 @@ export const multiFormatDateString = (timestamp: string = ''): string => {
     default:
       return 'Just now'
   }
+}
+
+export const checkIsLiked = (likeList: string[], userId: string) => {
+  return likeList.includes(userId)
 }
