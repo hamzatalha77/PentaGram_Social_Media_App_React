@@ -47,6 +47,21 @@ export async function saveUserToDB(user: {
     console.log(error)
   }
 }
+export async function getUserById(userId: string) {
+  try {
+    const user = await databases.getDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      userId
+    )
+
+    if (!user) throw Error
+
+    return user
+  } catch (error) {
+    console.log(error)
+  }
+}
 export async function signInAccount(user: { email: string; password: string }) {
   try {
     const session = await account.createEmailSession(user.email, user.password)

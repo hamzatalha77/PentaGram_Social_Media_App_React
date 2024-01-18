@@ -13,6 +13,7 @@ import {
   getInfinitePosts,
   getPostById,
   getRecentPosts,
+  getUserById,
   getUserPosts,
   likePost,
   savePost,
@@ -176,10 +177,17 @@ export const useGetPosts = () => {
     }
   })
 }
-export const useSearchPost = (searchTerm: string) => {
+export const useSearchPosts = (searchTerm: string) => {
   return useQuery({
     queryKey: [QUERY_KEYS.SEARCH_POSTS],
     queryFn: () => searchPosts(searchTerm),
     enabled: !!searchTerm
+  })
+}
+export const useGetUserById = (userId: string) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_USER_BY_ID, userId],
+    queryFn: () => getUserById(userId),
+    enabled: !!userId
   })
 }
