@@ -12,6 +12,7 @@ import { useInView } from 'react-intersection-observer'
 
 export type SearchResultProps = {
   isSearchFetching: boolean
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   searchedPosts: any
 }
 
