@@ -18,13 +18,15 @@ import Loader from '@/components/shared/Loader'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSignInAccount } from '@/lib/react-query/queriesAndMutations'
 import { useUserContext } from '@/context/AuthContext'
+import React from 'react'
 
 const SigninForm = () => {
   const { toast } = useToast()
   const navigate = useNavigate()
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext()
 
-  const { mutateAsync: signInAccount, isLoading } = useSignInAccount()
+  const { mutateAsync: signInAccount } = useSignInAccount()
+  const [isLoading, setIsLoading] = React.useState(false)
 
   const form = useForm<z.infer<typeof SigninValidation>>({
     resolver: zodResolver(SigninValidation),
@@ -35,24 +37,28 @@ const SigninForm = () => {
   })
 
   const handleSignin = async (user: z.infer<typeof SigninValidation>) => {
-    const session = await signInAccount(user)
+    try {
+      setIsLoading(true)
 
-    if (!session) {
-      toast({ title: 'Login failed. Please try again.' })
+      const session = await signInAccount(user)
 
-      return
-    }
+      if (!session) {
+        toast({ title: 'Login failed. Please try again.' })
+        return
+      }
 
-    const isLoggedIn = await checkAuthUser()
+      const isLoggedIn = await checkAuthUser()
 
-    if (isLoggedIn) {
-      form.reset()
-
-      navigate('/')
-    } else {
-      toast({ title: 'Login failed. Please try again.' })
-
-      return
+      if (isLoggedIn) {
+        form.reset()
+        navigate('/')
+      } else {
+        toast({ title: 'Login failed. Please try again.' })
+      }
+    } catch (error) {
+      console.error('Error signing in:', error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
