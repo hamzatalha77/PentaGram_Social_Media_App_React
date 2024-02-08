@@ -3,7 +3,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { useToast } from '@/components/ui/use-toast'
-
 import {
   Form,
   FormControl,
@@ -37,13 +36,11 @@ const SignupForm = () => {
     }
   })
 
-  // Queries
   const { mutateAsync: createUserAccount, isLoading: isCreatingAccount } =
     useCreateUserAccount()
   const { mutateAsync: signInAccount, isLoading: isSigningInUser } =
     useSignInAccount()
 
-  // Handler
   const handleSignup = async (user: z.infer<typeof SignupValidation>) => {
     try {
       const newUser = await createUserAccount(user)
@@ -86,7 +83,9 @@ const SignupForm = () => {
   return (
     <Form {...form}>
       <div className="sm:w-420 flex-center flex-col">
-        <img src="/assets/images/pentagram.png" alt="logo" />
+        <div className="w-72 h-72 pt-5">
+          <img src="/assets/images/pentaregister.svg" alt="logo" />
+        </div>
 
         <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
           Create a new account
