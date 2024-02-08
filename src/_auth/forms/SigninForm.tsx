@@ -18,18 +18,13 @@ import Loader from '@/components/shared/Loader'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSignInAccount } from '@/lib/react-query/queriesAndMutations'
 import { useUserContext } from '@/context/AuthContext'
-import React from 'react'
 
 const SigninForm = () => {
   const { toast } = useToast()
   const navigate = useNavigate()
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext()
 
-  const { mutateAsync: signInAccount } = useSignInAccount()
-  const [isLoading, setIsLoading] = React.useState(false)
-
-  const { mutateAsync: signInAccount, isPending: isSignInLoading } =
-    useSignInAccount()
+  const { mutateAsync: signInAccount, isLoading } = useSignInAccount()
 
   const form = useForm<z.infer<typeof SigninValidation>>({
     resolver: zodResolver(SigninValidation),
@@ -40,28 +35,24 @@ const SigninForm = () => {
   })
 
   const handleSignin = async (user: z.infer<typeof SigninValidation>) => {
-    try {
-      setIsLoading(true)
+    const session = await signInAccount(user)
 
-      const session = await signInAccount(user)
+    if (!session) {
+      toast({ title: 'Login failed. Please try again.' })
 
-      if (!session) {
-        toast({ title: 'Login failed. Please try again.' })
-        return
-      }
+      return
+    }
 
-      const isLoggedIn = await checkAuthUser()
+    const isLoggedIn = await checkAuthUser()
 
-      if (isLoggedIn) {
-        form.reset()
-        navigate('/')
-      } else {
-        toast({ title: 'Login failed. Please try again.' })
-      }
-    } catch (error) {
-      console.error('Error signing in:', error)
-    } finally {
-      setIsLoading(false)
+    if (isLoggedIn) {
+      form.reset()
+
+      navigate('/')
+    } else {
+      toast({ title: 'Login failed. Please try again.' })
+
+      return
     }
   }
 
@@ -111,7 +102,7 @@ const SigninForm = () => {
           />
 
           <Button type="submit" className="shad-button_primary">
-            {isSignInLoading || isUserLoading ? (
+            {isLoading || isUserLoading ? (
               <div className="flex-center gap-2">
                 <Loader /> Loading...
               </div>
